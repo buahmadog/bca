@@ -53,7 +53,7 @@ class BCA{
 		return $b;
 	}
 	
-	private function mutasiSaldo($name)
+	private function MutasiSaldo($name)
 	{
 		$data = @str_replace('align="center">:</td>',"",$this->getData());
 		$find = $this->getStr('align="left">'.$name.'</td>', '</td>', $data);
@@ -221,7 +221,7 @@ echo color('blue', "[+]")." =======================\n";
 echo color('blue', "[+]")." 1. Cek Saldo\n";
 echo color('blue', "[+]")." 2. Cek Mutasi\n";
 echo color('blue', "[+]")." =======================\n";
-echo color('blue', "[+]")." Silahkan pilih: ";
+echo color('blue', "[+]")." Silahkan pilih bro: ";
 $tools = trim(fgets(STDIN));
 
 if ($tools == 1) {
@@ -230,7 +230,7 @@ if ($tools == 1) {
 	$b = @json_decode($a->mutasiTrx());
 	$saldo = intval(str_replace(',', '', substr($b->saldo_akhir, 0, -3)))-50000;
 	echo "\n";
-	$res = "Saldo Utama: ".rupiah($saldo);
+	$res = "Saldo Rekening Utama: ".rupiah($saldo);
 	$qty = strlen($res);
 	echo color('blue', "[+]")." ";
 	for ($i=0; $i < $qty; $i++) echo "=";
@@ -240,12 +240,12 @@ if ($tools == 1) {
 	for ($i=0; $i < $qty; $i++) echo "=";
 	echo "\n";
 } elseif ($tools == 2) {
-	echo color('blue', "[+]")." Berapa Hari Terakhir: ";
+	echo color('blue', "[+]")." Berapa Hari Terakhir yang kamu mau : ";
 	$date = trim(fgets(STDIN));
 	$a = new BCA($userid,$pwd,$date);
 	$b = @json_decode($a->mutasiTrx());
 	echo "\n";
 	print_r($b);
 } else {
-	die(color('red', "[+]")." Yang benerlah goblok!");
+	die(color('red', "[+]")." Yang bener masukkinnya bro!");
 }
